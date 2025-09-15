@@ -11,9 +11,3 @@ pnpm-debug.log*
 uploads/
 src/uploads/
 
-# env & system
-.env
-.env.*
-.DS_Store
-.vscode/
-.idea/
