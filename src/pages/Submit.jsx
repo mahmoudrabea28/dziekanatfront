@@ -16,7 +16,7 @@ export default function Submit(){
       <input className="input" placeholder="Scientific field" value={scientificField} onChange={e=>setField(e.target.value)} />
       <input className="input" placeholder="keyword1, keyword2" value={keywords} onChange={e=>setKeywords(e.target.value)} />
       <textarea className="textarea" placeholder="Short description (abstract)" value={abstract} onChange={e=>setAbstract(e.target.value)} />
-      <input className="input" placeholder="Mentor email (optional)" value={mentorEmail} onChange={e=>setMentor(e.target.value)} />
+      <input className="input" placeholder="Mentor email" value={mentorEmail} onChange={e=>setMentor(e.target.value)} />
       <input type="file" multiple onChange={e=>setFiles(Array.from(e.target.files||[]))} />
       {err && <div className="muted" style={{color:'#dc2626'}}>{String(err)}</div>}
       <button className="btn primary">Add new article</button>
