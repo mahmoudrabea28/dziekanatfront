@@ -10,17 +10,17 @@ export default function Notifications(){
   async function markOne(id){ await api.post(`/notifications/${id}/read`); setItems(prev=>prev.map(i=>i._id===id?{...i,read:true}:i)); refreshCounts && refreshCounts('author') }
   const unread = items.filter(i=>!i.read).length
   return (<div className="container">
-    <div className="row" style={{justifyContent:'space-between',alignItems:'center'}}>
+    <div className="row" style={{justifyContent:'space-between'}}>
       <h2>Notifications</h2>
       {unread >= 2 && <button className="btn" onClick={markAll}>Mark all as read</button>}
     </div>
     {items.length===0 && <div className="muted">No notifications yet.</div>}
     {items.map(n=>(<div key={n._id} className="card">
       <div className="row" style={{justifyContent:'space-between'}}>
-        <div><b>{n.type==='review'?'Review update':'Notification'}</b>{!n.read && <span className="dot unread" title="New"></span>}</div>
+        <div><b>{n.type==='review'?'Review update':'Notification'}</b>{!n.read && <span className="dot unread"></span>}</div>
         <div className="muted">{new Date(n.createdAt).toLocaleString()}</div>
       </div>
-      <div style={{marginTop:6}}>
+      <div>
         <div>{n.message}</div>
         {(n.payload?.grade!==undefined) && <div className='muted'>Grade: <b>{n.payload.grade}</b></div>}
         {(n.payload?.status) && <div className='muted'>Status: <b>{n.payload.status}</b></div>}

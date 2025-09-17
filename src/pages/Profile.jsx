@@ -10,7 +10,6 @@ export default function Profile(){
   const [password, setPass] = useState('')
   const [avatar, setAvatar] = useState(null)
   const [msg, setMsg] = useState('')
-  const [err, setErr] = useState('');
   useEffect(()=>{ setFirst(user?.firstName||''); setLast(user?.lastName||''); setPhone(user?.phone||'') }, [user])
   async function onSave(e){
     e.preventDefault()
@@ -29,26 +28,11 @@ export default function Profile(){
         <button type="button" className="avatar-btn" onClick={()=>document.getElementById('avatarInput').click()}>
           {preview ? <img className="avatar" src={preview} alt="avatar"/> : <div className="avatar-ph">{initials || 'U'}</div>}
         </button>
-        <input
-  id="avatarInput"
-  style={{ display: 'none' }}
-  type="file"
-  accept="image/*"
-  onChange={e => {
-    const f = e.target.files?.[0] || null;
-    if (f && f.size > 2*1024*1024) {
-      setErr('Avatar must be <= 2MB');
-      e.target.value = '';
-      return;
-    }
-    setErr('');
-    setAvatar(f);
-  }}
-/>{err && <div className="muted" style={{ color: '#dc2626' }}>{err}</div>}
+        <input id="avatarInput" style={{display:'none'}} type="file" accept="image/*" onChange={e=>setAvatar(e.target.files?.[0]||null)} />
         <div className="muted">Role: <b>{user?.role==='author'?'Author':'Mentor'}</b></div>
       </div>
-      <div className="grid two"><input className="input" placeholder="First name" value={firstName} onChange={e=>setFirst(e.target.value)} required />
-        <input className="input" placeholder="Last name" value={lastName} onChange={e=>setLast(e.target.value)} required /></div>
+      <div className="grid two"><input className="input" placeholder="First name" value={firstName} onChange={e=>setFirst(e.target.value)} />
+        <input className="input" placeholder="Last name" value={lastName} onChange={e=>setLast(e.target.value)} /></div>
       <div className="grid two"><input className="input" placeholder="Phone" value={phone} onChange={e=>setPhone(e.target.value)} />
         <input className="input" placeholder="New password" value={password} onChange={e=>setPass(e.target.value)} /></div>
       <button className="btn primary">Save</button>{msg && <div className="muted">{msg}</div>}

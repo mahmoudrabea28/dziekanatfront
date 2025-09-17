@@ -8,8 +8,8 @@ export default function VerifyEmail(){
   return (<div className="container"><div className="card" style={{maxWidth:700,margin:'40px auto'}}><h2>Confirm your email</h2>
     <p className="muted">We sent a confirmation code to <b>{email}</b>. Enter it below.</p>
     <form className="grid" onSubmit={onSubmit}>
-      <input className="input" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} required />
-      <input className="input" placeholder="6-digit code" value={code} onChange={e=>setCode(e.target.value)} required />
+      <input className="input" placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} />
+      <input className="input" placeholder="6-digit code" value={code} onChange={e=>setCode(e.target.value)} />
       {err && <div className="muted" style={{color:'#dc2626'}}>{String(err)}</div>}
       <button className="btn primary" disabled={loading}>{loading?'...':'Validate'}</button>
     </form></div></div>)
