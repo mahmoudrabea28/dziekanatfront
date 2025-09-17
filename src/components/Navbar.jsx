@@ -13,7 +13,7 @@ export default function Navbar(){
     let t; async function tick(){ if(user?.role) await refreshCounts(user.role); t=setTimeout(tick, 20000) } tick(); return ()=>clearTimeout(t)
   }, [user])
   useEffect(()=>{ if(user?.role==='author' && notifCount>prevNotif.current){ add('New notification received'); } prevNotif.current=notifCount }, [notifCount])
-  useEffect(()=>{ if(user?.role==='mentor' && assignedCount>prevAssign.current){ add('You have a new assignment'); } prevAssign.current=assignedCount }, [assignedCount])
+  useEffect(()=>{ if(user?.role==='mentor' && assignedCount>prevAssign.current){ add('You have a new assignment'); } prevAssign.current=assignedCount })
   return (<header className="nav"><div className="wrap">
     <div className="row"><div className="brand"><Link to="/">Akademion</Link></div>
       <nav className="nav-links">

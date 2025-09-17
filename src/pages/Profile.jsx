@@ -31,8 +31,8 @@ export default function Profile(){
         <input id="avatarInput" style={{display:'none'}} type="file" accept="image/*" onChange={e=>setAvatar(e.target.files?.[0]||null)} />
         <div className="muted">Role: <b>{user?.role==='author'?'Author':'Mentor'}</b></div>
       </div>
-      <div className="grid two"><input className="input" placeholder="First name" value={firstName} onChange={e=>setFirst(e.target.value)} />
-        <input className="input" placeholder="Last name" value={lastName} onChange={e=>setLast(e.target.value)} /></div>
+      <div className="grid two"><input className="input" placeholder="First name" value={firstName} onChange={e=>setFirst(e.target.value)} required />
+        <input className="input" placeholder="Last name" value={lastName} onChange={e=>setLast(e.target.value)} required /></div>
       <div className="grid two"><input className="input" placeholder="Phone" value={phone} onChange={e=>setPhone(e.target.value)} />
         <input className="input" placeholder="New password" value={password} onChange={e=>setPass(e.target.value)} /></div>
       <button className="btn primary">Save</button>{msg && <div className="muted">{msg}</div>}

@@ -1,1 +1,1 @@
-Akademion Frontend v3.1
+Akademion Frontend v3.3

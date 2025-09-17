@@ -13,8 +13,8 @@ export default function EditArticle(){
     <h2>Edit article</h2>
     {disabled && <div className="muted" style={{color:'#dc2626'}}>Editing allowed only when status is "submitted" or "rejected".</div>}
     <form className="grid" onSubmit={onSave}>
-      <input className="input" value={a.title} onChange={e=>setA({...a,title:e.target.value})} disabled={disabled} />
-      <input className="input" value={a.scientificField} onChange={e=>setA({...a,scientificField:e.target.value})} disabled={disabled} />
+      <input className="input" value={a.title} onChange={e=>setA({...a,title:e.target.value})} disabled={disabled} required />
+      <input className="input" value={a.scientificField} onChange={e=>setA({...a,scientificField:e.target.value})} disabled={disabled} required />
       <input className="input" value={(a.keywords||[]).join(', ')} onChange={e=>setA({...a,keywords:e.target.value.split(',').map(s=>s.trim()).filter(Boolean)})} disabled={disabled} />
       <textarea className="textarea" value={a.abstract} onChange={e=>setA({...a,abstract:e.target.value})} disabled={disabled} />
       <input className="input" placeholder="Mentor email" value={a.mentorEmail||''} onChange={e=>setA({...a,mentorEmail:e.target.value})} disabled={disabled} />
