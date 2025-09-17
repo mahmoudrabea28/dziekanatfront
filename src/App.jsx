@@ -1,6 +1,8 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import { AuthProvider, useAuth } from './store/auth'
+import { CountersProvider } from './store/counters'
+import { ToastProvider } from './components/ToastProvider'
 import Main from './pages/Main'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -23,6 +25,8 @@ function RequireAuth({children, role}){
 }
 export default function App(){
   return (<AuthProvider>
+    <CountersProvider>
+    <ToastProvider>
     <Navbar/>
     <Routes>
       <Route path="/" element={<Main/>}/>
@@ -39,5 +43,7 @@ export default function App(){
       <Route path="/review/:id" element={<RequireAuth role="mentor"><ReviewPage/></RequireAuth>}/>
       <Route path="*" element={<Navigate to="/" replace />}/>
     </Routes>
+    </ToastProvider>
+    </CountersProvider>
   </AuthProvider>)
 }

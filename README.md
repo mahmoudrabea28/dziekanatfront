@@ -1,3 +1,1 @@
-Quick start:
-  npm install
-  npm run dev
+Akademion Frontend v3.1
