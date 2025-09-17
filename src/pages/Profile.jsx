@@ -10,6 +10,7 @@ export default function Profile(){
   const [password, setPass] = useState('')
   const [avatar, setAvatar] = useState(null)
   const [msg, setMsg] = useState('')
+  const [err, setErr] = useState('');
   useEffect(()=>{ setFirst(user?.firstName||''); setLast(user?.lastName||''); setPhone(user?.phone||'') }, [user])
   async function onSave(e){
     e.preventDefault()
@@ -28,7 +29,22 @@ export default function Profile(){
         <button type="button" className="avatar-btn" onClick={()=>document.getElementById('avatarInput').click()}>
           {preview ? <img className="avatar" src={preview} alt="avatar"/> : <div className="avatar-ph">{initials || 'U'}</div>}
         </button>
-        <input id="avatarInput" style={{display:'none'}} type="file" accept="image/*" onChange={e=>setAvatar(e.target.files?.[0]||null)} />
+        <input
+  id="avatarInput"
+  style={{ display: 'none' }}
+  type="file"
+  accept="image/*"
+  onChange={e => {
+    const f = e.target.files?.[0] || null;
+    if (f && f.size > 2*1024*1024) {
+      setErr('Avatar must be <= 2MB');
+      e.target.value = '';
+      return;
+    }
+    setErr('');
+    setAvatar(f);
+  }}
+/>{err && <div className="muted" style={{ color: '#dc2626' }}>{err}</div>}
         <div className="muted">Role: <b>{user?.role==='author'?'Author':'Mentor'}</b></div>
       </div>
       <div className="grid two"><input className="input" placeholder="First name" value={firstName} onChange={e=>setFirst(e.target.value)} required />
