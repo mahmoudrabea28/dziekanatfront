@@ -3,7 +3,7 @@ import { api, API_URL } from '../api/axios'
 import ArticleCard from '../components/ArticleCard'
 export default function Main(){
   const [items,setItems]=useState([]); const [q,setQ]=useState('')
-  async function fetchList(){ const r=await api.get('/articles',{params:{ q:q||undefined, status:'published' }}); setItems(r.data) }
+  async function fetchList(){ const r=await api.get('/articles',{params:{ q:q||undefined }}); setItems(r.data) }
   useEffect(()=>{ fetchList() },[])
   return (<div className="container">
     <div className="card"><div className="row">

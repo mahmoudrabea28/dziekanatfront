@@ -15,3 +15,66 @@ header.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px so
 .toast{background:#111;color:#fff;padding:10px 14px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .avatar-btn{border:none;background:transparent;padding:0;cursor:pointer}
 .avatar-ph{width:44px;height:44px;border-radius:50%;background:#e5e7eb;color:#374151;display:flex;align-items:center;justify-content:center;font-weight:600;border:1px solid #ddd}
+
+
+/* === Side menu === */
+.menu-btn{ background:none; border:none; display:inline-flex; flex-direction:column; gap:3px; margin-right:8px; cursor:pointer }
+.menu-btn span{ width:18px; height:2px; background:#111; display:block }
+.dark .menu-btn span{ background:#eee }
+
+.sidemenu{ position:fixed; top:60px; left: max(calc((100vw - 1100px)/2 + 20px), 16px); bottom:0; width:0; overflow:hidden; background:#fff; border-right:1px solid #eee; transition:width .2s ease }
+.sidemenu.open{ width:220px }
+.dark .sidemenu{ background:#111; border-color:#222 }
+
+.sidemenu nav{ display:flex; flex-direction:column; padding:16px }
+.sidemenu a{ padding:8px 6px; text-decoration:none; color:#333; border-radius:8px }
+.sidemenu a.active{ font-weight:600; list-style:disc; }
+.dark .sidemenu a{ color:#eee }
+.sidemenu a:hover{ background:rgba(0,0,0,.05) }
+.dark .sidemenu a:hover{ background:rgba(255,255,255,.08) }
+
+/* push main container a bit when open if needed (optional handled by page container margins) */
+
+
+/* === layout adjustments for SideMenu pushing content, not overlay === */
+.page{ transition: margin-left .2s ease }
+body.sidemenu-open .page{ margin-left:220px }
+@media (max-width: 900px){
+  body.sidemenu-open .page{ margin-left:180px }
+}
+/* مقفولة: أخفي الـborder */
+.sidemenu{ border-right: 0; }
+
+/* مفتوحة: أظهر الـborder */
+.sidemenu.open{ border-right: 1px solid #eee; }
+
+/* مفتوحة: صغّر عرض الـcontainer */
+body.sidemenu-open .container{ max-width: 840px; }   /* كانت 1100 */
+
+
+/* يظهر/يختفي عرض حقل البحث */
+.search-collapsible{
+  width:0;
+  opacity:0;
+  padding:10px 12px;             /* يطابق .input */
+  border:1px solid #ddd;          /* يطابق .input */
+  border-radius:10px;             /* يطابق .input */
+  transition: width .25s ease, opacity .2s ease;
+}
+.search-collapsible.open{
+  width:min(520px, 100%);
+  opacity:1;
+}
+
+/* إخفاء النص على الشاشات الصغيرة لزر الـ+ */
+.hide-sm{ display:inline-block; }
+@media (max-width:640px){ .hide-sm{ display:none; } }
+.lang-select{
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 4px 10px;
+  margin-right: 12px;
+  background: transparent;
+  font-weight: 500;
+  cursor: pointer;
+}
