@@ -14,7 +14,7 @@ import MyWorks from './pages/MyWorks'
 import Submit from './pages/Submit'
 import EditArticle from './pages/EditArticle'
 import ReviewPage from './pages/ReviewPage'
-
+import { api } from './api/axios';
 function RequireAuth({children, role}){
   const { user, loading } = useAuth(); const loc = useLocation()
   if(loading) return <div className="container"><p>Loading...</p></div>
@@ -30,6 +30,7 @@ function Home(){
 }
 
 export default function App(){
+  useEffect(() => { api.get('/').catch(()=>{}); }, []);
   return (<I18nProvider><AuthProvider>
     <CountersProvider>
     <ToastProvider>
